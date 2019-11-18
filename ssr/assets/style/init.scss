@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+.container {
+  padding: 0 0;
+  &:after {
+    content: "";
+    clear: both;
+  }
+}
+
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+.icon {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  &.sm {
+    font-size: 14px;
+  }
+  &.md {
+    font-size: 22px;
+  }
+  &.lg {
+    font-size: 28px;
+  }
+  &.xlg {
+    font-size: 32px;
+  }
+}
+
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+
+.visibility {
+  visibility: visible;
+}
+.no-visibility {
+  visibility: hidden;
+}
+
+.browsehappy {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  text-align: center;
+  color: #8a1f11;
+  background: #fbe3e4;
+  a {
+    font-weight: 700;
+    text-decoration: underline;
+    color: #8a1f11;
+  }
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+.bg-grey {
+  background-color: #f7f7f7 !important;
+}
+
+.bg-deepgrey {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.bg-blue {
+  background-color: #6fa3ef !important;
+}
+
+.bg-purple {
+  background-color: #bc99c4 !important;
+}
+
+.bg-green {
+  background-color: #46c47c !important;
+}
+
+.bg-yellow {
+  background-color: #f9bb3c !important;
+}
+
+.bg-red {
+  background-color: #e8583d !important;
+}
+
+.bg-orange {
+  background-color: #f68e5f !important;
+}
+
+.MathJax_Display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.MathJax {
+  outline: 0;
+  span {
+    font-size: 15px;
+  }
+}

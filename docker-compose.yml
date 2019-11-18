@@ -1,0 +1,83 @@
+
+version: '3.3'
+services:
+
+  web:
+    build: ./nginx
+    restart: always
+    volumes:
+      - ./data/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./ssr/.nuxt:/usr/share/nginx/html/client_ssr/.nuxt # ./data/client_ssr/.nuxt:/usr/share/nginx/html/client_ssr/.nuxt
+      - ./admin/dist:/usr/share/nginx/html/admin # ./data/admin:/usr/share/nginx/html/admin
+      - ./serve/www:/usr/share/nginx/html/serve # ./data/serve:/usr/share/nginx/html/serve
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_PORT=80
+    networks:
+      - blog-net
+    links:
+      - serve_ghost
+      - ssr_ghost
+    container_name: web
+    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/nginx.conf > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+
+  ssr_ghost:
+    build: ./ssr
+    restart: always
+    ports:
+      - "3000:3000"
+    networks: 
+      - blog-net
+    depends_on:
+      - serve_ghost
+    links: 
+      - serve_ghost
+    volumes:
+      - ./ssr/.nuxt:/usr/src/ssr/.nuxt # - ./data/client_ssr/.nuxt:/usr/src/ssr/.nuxt
+    container_name: ssr_ghost
+    command: yarn run start
+
+  serve_ghost:
+    build: ./serve
+    restart: always
+    env_file:
+      - ./blog.env
+    ports: 
+      - "8765:8765"
+    networks:
+      - blog-net
+    volumes:
+      - ./serve/www:/usr/src/serve/www # ./data/serve:/usr/src/serve/www
+    depends_on:
+      - db
+    links: 
+      - db
+    container_name: serve_ghost
+    command: yarn run start
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    networks:
+      - blog-net
+    ports:
+      - 3306:3306
+    container_name: db
+    environment:
+      MYSQL_DATABASE: blog
+      MYSQL_ROOT_PASSWORD: root123
+    volumes:
+      - ./data/mysql/init/blog.sql:/docker-entrypoint-initdb.d/blog.sql
+      - ./data/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+
+  adminer_mysql:
+    image: adminer
+    restart: always
+    networks:
+      - blog-net
+    ports:
+      - 8088:8080
+networks:
+  blog-net:
+    driver: bridge

@@ -1,0 +1,213 @@
+@charset "UTF-8";
+
+@media (max-width: 1000px) {
+  .directory-content {
+    display: none;
+  }
+  .post-header-thumb {
+    height: 280px;
+  }
+}
+
+@media (max-width: 880px) {
+  .index-page {
+    padding: 90px 0 0;
+  }
+  .archive-page, .demo-page {
+    padding: 90px 0 20px;
+  }
+  .common-page {
+    padding: 90px 0 0;
+  }
+  .post-onelist-item-container {
+    padding: 50px 20px 55px;
+  }
+  .post-list-item, .demo-list-item {
+    width: 50%;
+    padding: 10px;
+  }
+  .post-list-item {
+    &:nth-child(odd) {
+      padding-left: 20px;
+    }
+    &:nth-child(even) {
+      padding-right: 20px;
+    }
+  }
+  .lists-navigator {
+    margin: 25px 0 30px;
+  }
+  .post-header-thumb {
+    height: 250px;
+  }
+  .footer-meta .footer-container {
+    padding: 0;
+  }
+  .main-content {
+    margin: 0 auto;
+  }
+  .footer-meta .meta-item {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .post-header-thumb {
+    height: 220px;
+  }
+  .post-page {
+    padding: 30px 25px 0;
+  }
+  .page-page {
+    padding: 100px 25px 0;
+  }
+  .related-post-lists {
+    padding-top: 15px;
+  }
+  .post-onelist-item-container {
+    padding: 20px 20px 25px;
+    .onelist-item-thumb {
+      min-height: 240px;
+    }
+  }
+  .demo-list-item-container .item-thumb {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .navbar-menu {
+    display: none;
+  }
+  .navbar-search {
+    padding: 0 35px 0 0;
+    form {
+      width: 180px;
+      margin-right: 55px;
+    }
+  }
+  .navbar-mobile-menu {
+    display: inline-block;
+  }
+  .red-gradient, .meta-posts, .meta-comments {
+    display: none;
+  }
+  .post-page {
+    padding: 100px 25px 0;
+  }
+  .common-page .post-list-item {
+    width: 100%;
+    padding: 10px 20px;
+  }
+  .footer-social {
+    display: none;
+  }
+  .footer-link {
+    display: none
+  }
+  .footer-meta {
+    .footer-container {
+      height: 70px;
+      padding: 0 15px;
+    }
+    .meta-item {
+      width: 100%;
+      padding: 0 10px;
+    }
+    .meta-copyright .info-text {
+      float: right;
+      p {
+        text-align: right;
+      }
+    }
+  }
+  .post-onelist-item-container .onelist-item-thumb {
+    min-height: 220px;
+  }
+  .post-header-thumb {
+    display: none;
+  }
+}
+
+@media (max-width: 580px) {
+  .navbar-search form {
+    width: 150px;
+  }
+  .index-page {
+    padding: 70px 0 0;
+  }
+  .archive-page {
+    padding: 70px 0 20px;
+  }
+  .demo-page {
+    padding: 90px 0 20px;
+  }
+  .common-page {
+    padding: 70px 0 0;
+  }
+  .post-list-item {
+    width: 100%;
+    padding: 10px 20px;
+  }
+  .demo-list-item {
+    width: 100%;
+    padding: 10px;
+  }
+  .post-list-item:first-child {
+    padding-top: 20px;
+  }
+  .archive-page .post-list-item, .demo-page .demo-list-item {
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+  .common-page .post-list-item:first-child {
+    padding-top: 0;
+  }
+  .related-post-lists {
+    padding-top: 5px;
+  }
+  .main-content {
+    margin: 0 auto;
+  }
+  .post-onelist-item-container {
+    padding: 20px 20px 25px;
+    .item-content, .item-readmore {
+      display: none;
+    }
+    .onelist-item-thumb {
+      min-height: 180px;
+    }
+  }
+  .timeline.is-centered {
+    .timeline-item:nth-of-type(2n+1) {
+      .timeline-content {
+        padding-left: 2em;
+        p {
+          white-space: normal;
+          min-width: 10em;
+        }
+      }
+    }
+  }
+  .timeline.is-centered {
+    .timeline-item:nth-of-type(2n) {
+      .timeline-content{
+        padding-right: 2em;
+        p {
+          white-space: normal;
+          min-width: 10em;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 410px) {
+  .meta-copyright-info .info-logo {
+    display: none;
+  }
+}

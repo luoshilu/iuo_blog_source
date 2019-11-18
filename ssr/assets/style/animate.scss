@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+// route transitions
+.container {
+  transition: all .5s cubic-bezier(.55,0,.1,1);
+}
+.page-enter-active, .page-leave-active {
+  transition: opacity .5s
+}
+.page-enter, .page-leave-active {
+  opacity: 0
+}
+
+.bounce-enter-active {
+  animation: bounce-in .8s;
+}
+.bounce-leave-active {
+  animation: bounce-out .5s;
+}
+@keyframes bounce-in {
+  0% { transform: scale(0.9) }
+  50% { transform: scale(1.1) }
+  100% { transform: scale(1) }
+}
+@keyframes bounce-out {
+  0% { transform: scale(1) }
+  50% { transform: scale(1.1) }
+  100% { transform: scale(0.9) }
+}
+
+.slide-left-enter,
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate(30px, 0);
+}
+.slide-left-leave-active,
+.slide-right-enter {
+  opacity: 0;
+  transform: translate(-30px, 0);
+}
+
+// timeline
+.animated {
+  animation-duration: .5s;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-fill-mode: both;
+  &.slideUp {
+    animation-name: slideUp;
+    animation-name: slideUp;
+  }
+  &.slideDown {
+    animation-name: slideDown;
+    animation-name: slideDown;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-80px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-98px);
+    transform: translateY(-80px);
+  }
+
+  100% {
+    transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-80px);
+  }
+}
+
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-80px);
+    transform: translateY(-80px);
+  }
+}
+
+
+@keyframes fade-in {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+
+@keyframes fade-in {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
