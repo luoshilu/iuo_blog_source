@@ -9,5 +9,5 @@ WORKDIR /usr/src/ssr
 # 将ssr_builder构建的node_modules 复制到目标路径内
 COPY --from=ssr_builder /usr/src/ssr/node_modules ./node_modules
 COPY package.json nuxt.config.js ./
-COPY ./server ./server
+COPY . .
 EXPOSE 3000
