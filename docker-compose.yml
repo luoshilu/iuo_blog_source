@@ -24,7 +24,6 @@ services:
 
   admin:
     build: ./admin
-    restart: always
     depends_on:
       - serve_ghost
     volumes:
