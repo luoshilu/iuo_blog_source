@@ -20,7 +20,13 @@ module.exports = class extends  think.Controller {
     const savepath = '/uploads/' + year + '/' + month + '/' + basename;
     const filepath = path.join(think.ROOT_PATH, 'www' + savepath);
     think.mkdir(path.dirname(filepath));
-    rename(file.path, filepath);
+
+    let readStream=fs.createReadStream(file.path);
+    let writeStream=fs.createWriteStream(filepath);
+    readStream.pipe(writeStream);
+    readStream.on('end',function(){
+        fs.unlinkSync(file.path);
+    });
 
     let data={ url: savepath, basename:basename, filepath:filepath};
     await this.hook('upload',data);
