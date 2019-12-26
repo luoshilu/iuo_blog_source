@@ -25,7 +25,10 @@ module.exports = class extends  think.Controller {
     let writeStream=fs.createWriteStream(filepath);
     readStream.pipe(writeStream);
     readStream.on('end',function(){
-        fs.unlinkSync(file.path);
+      console.log('end=====');
+      console.log(file.path);
+      console.log(filepath);
+      fs.unlinkSync(file.path);
     });
 
     let data={ url: savepath, basename:basename, filepath:filepath};
