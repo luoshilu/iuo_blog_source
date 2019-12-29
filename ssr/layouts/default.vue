@@ -12,6 +12,7 @@ import Foot from "~/components/Foot.vue"
 
 import { getData, setData } from 'nuxt-storage/local-storage'
 // import faker from 'faker'
+import { config } from "@/api"
 
 export default {
   components: { Nav, Foot },
@@ -25,6 +26,25 @@ export default {
 
       return `${firstName} ${lastName}`
     }
+  },
+  beforeMount () {
+    // get site config
+    config.getList().then(res => {
+      if (res.errno === 0) {
+        let siteConfig = res.data.site
+        this.$store.commit('INIT_SITE', siteConfig)
+
+        // 设置 favicon
+        if (process.client) {
+          let headEle = document.getElementsByTagName('head')[0]
+          let ico = document.createElement('link')
+          ico.setAttribute('type', 'image/x-icon')
+          ico.setAttribute('rel', 'icon')
+          ico.setAttribute('href', siteConfig.ico)
+          headEle.appendChild(ico)
+        }
+      }
+    })
   },
   mounted () {
     if (process.client) {

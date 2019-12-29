@@ -7,11 +7,23 @@ export const state = () => ({
     email: '',
     url: '',
   },
+  site: {
+    title: '',
+    url: '',
+    keywords: '',
+    description: '',
+    footer: '',
+    logo: '',
+    cdn: '',
+  },
 })
 
 export const mutations = {
   INIT_VISITOR (state, val) {
     state.visitor = val
+  },
+  INIT_SITE (state, val) {
+    state.site = val
   },
   UPDATE_AUTHOR (state, val) {
     state.visitor.author = val

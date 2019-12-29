@@ -81,6 +81,10 @@ export default {
           hid: 'description',
           name: 'description',
           content: `${(this.post.tag.map(tag => tag.name)).join()} ${this.post.description}`
+        },{
+          hid: 'keywords',
+          name: 'keywords',
+          content: `${(this.post.tag.map(tag => tag.name)).join()} ${this.post.title}`
         }
       ]
     }

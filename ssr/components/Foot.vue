@@ -4,19 +4,22 @@
       <div class="footer-container">
         <div class="meta-item meta-copyright">
           <div class="meta-copyright-info">
-            <a href="/" class="info-logo"> IUO. </a>
+            <a href="/" class="info-logo"> {{site.title}} </a>
             <div class="info-text">
               <p>
-                Theme is Pinghsu by Chakhsu,
+                {{site.footer}}
               </p>
-              <p>Powered by
+              <p>Powered by:</p>
+              <p>
                 <IconNuxt></IconNuxt>
                 <IconKoa></IconKoa>
                 <IconMysql></IconMysql>
                 <IconQiniu></IconQiniu>
+                <IconDocker></IconDocker>
               </p>
 
-              <p>© 2018 - 2019 <a href="https://asyncc.com/">asyncc.com</a></p>
+              <p>© 2018 - 2020 </p>
+              <p> <a :href="site.url">{{site.url}}</a></p>
             </div>
           </div>
         </div>
@@ -44,7 +47,7 @@
         </div>
       </div>
       <div v-show="gotopBtn" class="fixed-tool">
-          <a href="https://github.com/luoshilu" target="_blank">
+          <a :href="site.github" target="_blank">
             <IconGithub></IconGithub>
           </a>
           <IconRocket></IconRocket>
@@ -61,9 +64,12 @@ import IconRocket from '@/components/svgicon/animatedicons/IconRocket.vue'
 import IconGithub from '@/components/svgicon/animatedicons/IconGithub.vue'
 
 import IconQiniu from '@/static/svg/qiniu.svg'
+import IconDocker from '@/static/svg/docker.svg'
 import IconKoa from '@/static/svg/koa.svg'
 import IconNuxt from '@/static/svg/nuxt.svg'
 import IconMysql from '@/static/svg/mysql.svg'
+
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -73,6 +79,7 @@ export default {
     IconKoa,
     IconNuxt,
     IconMysql,
+    IconDocker
   },
   data () {
     return {
@@ -81,6 +88,9 @@ export default {
       gotopBtn: false,
     }
   },
+  computed: mapState({
+    site: state => state.site
+  }),
   mounted() {
     if(process.client) {
       let resPost = post.getList({type: 'recent'})

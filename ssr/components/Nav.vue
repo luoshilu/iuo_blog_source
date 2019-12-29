@@ -2,7 +2,7 @@
   <header id="header" class="header bg-white">
     <div class="navbar-container">
       <nuxt-link to="/" class="navbar-logo">
-        <img class="logo" ref="logo" src="@/static/img/head.png" alt="logo">
+        <img v-if="site.logo" class="logo" ref="logo" :src="site.logo" alt="logo">
       </nuxt-link>
       <div class="navbar-search">
         <span class="icon-search"></span>
@@ -43,15 +43,12 @@
 
 <script>
 import HeadroomModule from '@/assets/js/headroom.min.js'
-import { TweenMax, TimelineMax, Sine, Power0 } from 'gsap'
+import { mapState } from 'vuex'
 
 export default {
   data () {
     return {
       search: '',
-      rotateCD: '',
-      pauseTween: false,
-      audio: '',
       nav: {
         Archive: "/archive",
         Demos: "/demo",
@@ -60,6 +57,9 @@ export default {
       },
     }
   },
+  computed: mapState({
+    site: state => state.site
+  }),
   mounted() {
     if(process.client) {
       let Headroom = HeadroomModule()
@@ -69,56 +69,13 @@ export default {
         classes: { initial: "animated", pinned: "slideDown", unpinned: "slideUp" }
       });
       header.init()
-
-      // audio
-      // this.audio = document.createElement("audio")
-      // this.audio.loop = true;
-      // this.audio.src  = "https://upload.wikimedia.org/wikipedia/en/d/d8/You_Spin_Me_Round_by_Dead_or_Alive.ogg";
-      // head rotate
-      this.rotateCD = TweenMax.to(
-        this.$refs.logo,
-        0.3,
-        {
-        rotation: 360,
-        ease: Power0.easeNone,
-        repeat: -1,
-        paused: true
-      })
     }
   },
   methods: {
-    rotateHead(play) {
-      let rotateCD = this.rotateCD
-      let pauseTween = this.pauseTween
-      // let audio = this.audio
-      if(play) {
-        rotateCD.play()
-        TweenMax.to(rotateCD, 2, { timeScale: 1 });
-
-        pauseTween && pauseTween.kill();
-        // if (audio.paused) TweenLite.set(audio, { volume: 0, playbackRate: 0.5 });
-        // TweenLite.to(audio, 2, { volume: 1, playbackRate: 1 });
-        // audio.play();
-      } else {
-        TweenMax.to(rotateCD, 2, {
-          timeScale: 0,
-          onComplete: rotateCD.pause(2),
-          callbackScope: rotateCD
-        });
-        pauseTween && pauseTween.kill();
-        // this.pauseTween = TweenLite.to(audio, 2, {
-        //   volume: 0,
-        //   playbackRate: 0.5,
-        //   onComplete: audio.pause,
-        //   callbackScope: audio
-        // })
-      }
-    },
     onSubmit() {
       if (this.search.trim() === '') {
         return
       }
-      // blur
       this.$refs.inputBox.blur()
       this.$router.replace(`/muster/search/${this.search}`)
     },

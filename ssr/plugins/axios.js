@@ -4,7 +4,9 @@ import VueAxios from 'vue-axios'
 
 import axios from 'axios'
 
-axios.defaults.baseURL = process.server ? `http://serve_ghost:8765/client_api` : `/client_api`
+const serveGhost = process.env.NODE_ENV === 'development' ? '127.0.0.1' : 'serve_ghost'
+
+axios.defaults.baseURL = process.server ? `http://${serveGhost}:8765/client_api` : `/client_api`
 // axios.defaults.baseURL = '/client_api'
 
 axios.defaults.timeout = 50000

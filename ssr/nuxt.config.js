@@ -6,7 +6,7 @@ module.exports = {
     host: '0.0.0.0', // default: localhost
   },
   head: {
-    titleTemplate: `%s | IUO`,
+    titleTemplate: `%s`,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -15,9 +15,6 @@ module.exports = {
       { name: 'renderer', content: 'webkit' },
       { name: 'Cache-Control', content: 'no-siteapp' },
       { rel: 'dns-prefetch', content: '//secure.gravatar.com' },
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/static/home/img/favicon.ico' },
     ],
   },
   router: {
@@ -30,6 +27,13 @@ module.exports = {
 
   proxy: {
     '/client_api': {
+      target: `http://127.0.0.1:8765`,
+      changeOrigin: true,
+      pathRewrite: {
+        // '^/client_api' : '/'
+      },
+    },
+    '/uploads': {
       target: `http://127.0.0.1:8765`,
       changeOrigin: true,
       pathRewrite: {

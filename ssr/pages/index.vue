@@ -7,16 +7,20 @@
 <script>
 import { post } from '@/api'
 import PostList from '@/components/post/List.vue'
+// import { mapState } from 'vuex'
 
 export default {
   components: {
     PostList
   },
+  // computed: mapState({
+  //   site: state => state.site
+  // }),
   transition: 'page',
   head: {
     title: '首页',
     meta: [
-      { hid: 'description', name: 'description', content: `IUO的博客首页，IUO，关于前端、web、node.js。` }
+      { hid: 'description', name: 'description', content: `首页` }
     ]
   },
   async asyncData () {
