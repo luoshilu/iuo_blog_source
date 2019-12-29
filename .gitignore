@@ -4,3 +4,4 @@ ssr/.nuxt
 admin/dist
 data/admin
 serve/www/
+serve/runtime
