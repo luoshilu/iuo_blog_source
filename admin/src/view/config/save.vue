@@ -8,12 +8,18 @@
             <FormItem label="站点logo">
                 <Input v-model="site.logo"></Input>
             </FormItem>
+            <FormItem label="站点favicon">
+                <Input v-model="site.ico"></Input>
+            </FormItem>
             <FormItem label="站点地址">
                 <Input v-model="site.url"></Input>
             </FormItem>
 
             <FormItem label="cdn域名">
                 <Input v-model="site.cdn"></Input>
+            </FormItem>
+            <FormItem label="github">
+                <Input v-model="site.github"></Input>
             </FormItem>
 
             <FormItem label="关键词">
