@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "author": "luo",
   "scripts": {
-    "dev": "node development.js",
+    "serve": "node development.js",
     "prod": "node production.js",
     "start": "npm run prod --port 8765",
-    "serve": "npm run dev --port 8765",
+    "dev": "npm run serve --port 8765",
     "lint": "eslint src/",
     "lint-fix": "eslint --fix src/"
   },

@@ -1,13 +1,13 @@
 module.exports = class extends think.Model {
   /**
      * 获取配置列表
-     * @param  {String} type [description]
-     * @return {[type]}      [description]
+     * @param  {String} name [description]
+     * @return {[name]}      [description]
      */
-  async getList(type = '') {
+  async getList(name = '') {
     const map = {};
-    if (type) {
-      map.type = type;
+    if (name) {
+      map.name = name;
     }
     const list = await this.where(map).select();
     const data = {};

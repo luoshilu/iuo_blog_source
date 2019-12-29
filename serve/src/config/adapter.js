@@ -36,13 +36,13 @@ exports.model = {
   },
   mysql: {
     handle: mysql,
-    database: 'blog-test',
+    database: 'blog',
     prefix: 'luo_',
     encoding: 'utf8',
-    host: '101.200.144.41',
-    port: '',
-    user: 'leo',
-    password: 'leo123456',
+    host: '0.0.0.0',
+    port: '3306',
+    user: 'root',
+    password: 'root123',
     dateStrings: true
   }
 };
