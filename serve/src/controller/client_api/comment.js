@@ -100,7 +100,7 @@ module.exports = class extends BaseRest {
       if (content.type === 'post') {
         category = content.category.slug;
       }
-      const commentLink = `${category}/${content.slug}#comment-${insertId}`;
+      const commentLink = `content/${category}/${content.slug}#comment-${insertId}`;
       data.id = insertId;
       data.content = content;
       await this.hook('commentCreate', data, commentLink);
