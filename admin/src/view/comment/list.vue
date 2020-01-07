@@ -76,8 +76,8 @@ export default {
           width: 100,
           align: "center",
           render: (h, params) => {
-            let icon=params.row.status==99?'checkmark':'close';
-            let color=params.row.status==99?'#19be6b':'#ed3f14';
+            let icon=params.row.status==CONST.S_BS_PUBLISH.v?'checkmark':'close';
+            let color=params.row.status==CONST.S_BS_PUBLISH.v?'#19be6b':'#ed3f14';
             return h('Icon', {
               props: {
                 type: icon

@@ -35,12 +35,6 @@
         </Col>
       </Row>
     </FormItem>
-
-    <FormItem label="相关描述" prop="description">
-      <div id="editor">
-        <mavon-editor ref="md" @imgAdd="imgAdd" class="editor" v-model="formItem.markdown"></mavon-editor>
-      </div>
-    </FormItem>
     <FormItem label="demo内容">
       <div id="demo-content">
         <demo-editor
@@ -58,8 +52,6 @@
 </template>
 <script>
 import demoEditor from "@/view/common/demoEditor.vue";
-import "mavon-editor/dist/css/index.css";
-import { mavonEditor } from "mavon-editor";
 import {
   Form,
   FormItem,
@@ -79,7 +71,6 @@ import {
 import { demo, image } from "@/api";
 export default {
   components: {
-    mavonEditor,
     demoEditor,
     Form,
     FormItem,
@@ -107,7 +98,7 @@ export default {
         markdown: "",
         description: "",
         html: "",
-        direct_url: 0,
+        direct_url: 1,
         status: 1,
         css: "",
         js: "",
@@ -181,7 +172,7 @@ export default {
         res.data.date = new Date(res.data.create_time * 1000);
         res.data.time = new Date(res.data.create_time * 1000);
         console.log(res.data);
-        
+
         this.formItem = res.data;
       });
     },

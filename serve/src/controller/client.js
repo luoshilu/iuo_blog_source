@@ -19,9 +19,11 @@ module.exports = class extends think.Controller {
     // 站点配置
     const config = await think.model('config').cache('config').getList();
     this.config.site = config.site;
+    this.config.contact = config.contact;
     // 更新访客信息
     if (!isVisited) {
-      if (think.env === 'production' && this.ip === '127.0.0.1') return;
+      let ipPrv = this.ip.slice(0,3)
+      if (think.env === 'development' || ipPrv==='172' || ipPrv === '127') return;
       const visitorInfo = {
         ip: this.ip,
         url: this.url,

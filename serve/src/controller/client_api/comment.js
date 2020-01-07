@@ -12,7 +12,7 @@ module.exports = class extends BaseRest {
     if (this.id) {
       map.id = this.id;
       if (think.isEmpty(this.userInfo)) {
-        map.status = 99;
+        map.status = think.CONST.S_BS_PUBLISH.v;
       }
       data = await this.modelInstance.where(map).find();
 
@@ -44,7 +44,7 @@ module.exports = class extends BaseRest {
           as: 'demo',
           on: ['demo_id', 'id']
         })
-        .where({ 'comment.status': 99 })
+        .where({ 'comment.status': think.CONST.S_BS_PUBLISH.v })
         .field('comment.*,content.slug,content.category_id,category.slug AS category,demo.slug AS demo_slug')
         .limit(5)
         .order('comment.create_time desc')
@@ -66,7 +66,7 @@ module.exports = class extends BaseRest {
 
     const map = {
       slug: slug,
-      status: 99
+      status: think.CONST.S_BS_PUBLISH.v
     };
 
     const content = await this.model('content').where(map).find();
@@ -84,7 +84,7 @@ module.exports = class extends BaseRest {
       ip: this.ip,
       agent: this.header('User-Agent'),
       text: this.post('text'),
-      status: 99,
+      status: think.CONST.S_BS_PUBLISH.v,
       parent_id: parent.id,
       parent: {id: parent.id, author: parent.author, text: parent.text},
       create_time: (new Date()).getTime() / 1000,

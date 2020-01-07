@@ -51,7 +51,7 @@ import Comment from '@/components/comment/Comment'
 
 import PostDirect from '@/assets/js/postdirect'
 import Zoom from '@/assets/js/zoom.min'
-import Timeline from '@/assets/js/timeline.min'
+// import Timeline from '@/assets/js/timeline.min'
 
 export default {
   components: {
@@ -69,8 +69,13 @@ export default {
       tag: [],
       loading: false
     }
+
     let res = await post.getInfo(params.slug)
-    initData.post = res.data
+    if (res.data.id) {
+      initData.post = res.data
+    } else {
+      error({ statusCode: 404 })
+    }
     return initData
   },
   head () {
@@ -91,7 +96,7 @@ export default {
   },
   computed: {
     isPost() {
-      return (this.post.slug !== 'about' && this.post.slug !== 'links')
+      return (this.post.type === 'post')
     }
   },
   mounted () {
@@ -103,11 +108,11 @@ export default {
           Zoom('#post-text img') // 放大图片
         }, 1)
       }
-      if(this.post && this.post.slug === 'about') {
-        setTimeout(() => {
-          Timeline('.timeline-content') // timeline
-        }, 1)
-      }
+      // if(this.post && this.post.slug === 'about') {
+      //   setTimeout(() => {
+      //     Timeline('.timeline-content') // timeline
+      //   }, 1)
+      // }
     }
   },
 }

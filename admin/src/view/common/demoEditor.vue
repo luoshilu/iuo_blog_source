@@ -1,13 +1,19 @@
 <template>
   <div>
     <div class="demo-editor">
-      <Input type="textarea" v-model="demo_html" :rows="6" placeholder="html..."></Input>
-      <i></i>
-      <Input type="textarea" v-model="demo_css" :rows="6" placeholder="css..."></Input>
-      <i></i>
-      <Input type="textarea" v-model="demo_js" :rows="6" placeholder="js..."></Input>
+      <div class="input-content">
+        <Input type="textarea" v-model="demo_html" :rows="8" placeholder="html..."></Input>
+      </div>
+      <div class="input-content">
+        <Input type="textarea" v-model="demo_css" :rows="8" placeholder="css..."></Input>
+      </div>
+      <div class="input-content">
+        <Input type="textarea" v-model="demo_js" :rows="8" placeholder="js..."></Input>
+      </div>
     </div>
-    <iframe id="ifm" style="height:600px" frameborder="0"></iframe>
+    <div class="demo-preview">
+      <iframe id="ifm" style="height:600px" frameborder="0"></iframe>
+    </div>
   </div>
 </template>
 <style>
@@ -15,13 +21,26 @@ iframe {
   width: 100%;
 }
 .demo-editor {
-  display: flex;
+  width: 500px;
+  position: absolute;
+  top: 0;
+  left: 0;
   font-size: 0;
   margin-bottom: 12px;
 }
 .demo-editor i {
   position: relative;
   width: 12px;
+}
+.demo-preview {
+  padding-left: 520px;
+}
+.input-content {
+  margin-bottom: 20px;
+}
+#ifm {
+  border: 1px solid #dddee1;
+  border-radius: 4px;
 }
 </style>
 <script>

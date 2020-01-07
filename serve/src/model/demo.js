@@ -6,7 +6,7 @@ module.exports = class extends think.Model {
         type: think.Model.HAS_MANY,
         key: 'id',
         fKey: 'demo_id',
-        where: 'status=99',
+        where: `status=${think.CONST.S_BS_PUBLISH.v}`,
         order: 'create_time desc'
       },
       user: {

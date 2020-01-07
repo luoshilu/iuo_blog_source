@@ -3,6 +3,9 @@ import { setData } from 'nuxt-storage/local-storage'
 
 export const state = () => ({
   visitor: {
+    ip: '',
+    agent: '',
+    visit_time: '',
     author: '',
     email: '',
     url: '',

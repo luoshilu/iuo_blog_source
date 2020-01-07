@@ -6,13 +6,14 @@ module.exports = class extends BaseRest {
    * @return {[type]} [description]
    */
   async getAction() {
+    const S_BS_PUBLISH = think.CONST.S_BS_PUBLISH.v  // 已发布
     let data;
     const map = {};
     // 获取详情
     if (this.id) {
       map.id = this.id;
       if (think.isEmpty(this.userInfo)) {
-        map.status = 99;
+        map.status = S_BS_PUBLISH;
       }
       data = await this.modelInstance.where(map).find();
 
@@ -27,7 +28,7 @@ module.exports = class extends BaseRest {
     // 是否获取全部
     const all = this.get('all');
     if (!all || think.isEmpty(this.userInfo)) {
-      map['comment.status'] = 99;
+      map['comment.status'] = S_BS_PUBLISH;
     }
 
     // 页码

@@ -11,6 +11,7 @@
                 <div class="item-title">
                   <nuxt-link :to="`/content/${post.category.slug}/${post.slug}`">
                     {{post.title}}
+                    <ContentTop v-if="post.status == TOP"></ContentTop>
                   </nuxt-link>
                 </div>
                 <div class="item-meta">
@@ -69,14 +70,23 @@
 <script>
 import Left from '@/static/svg/left.svg'
 import Right from '@/static/svg/right.svg'
+import ContentTop from '@/static/svg/content_top.svg'
+import CONST from 'iuo_blog_constant'
+
 export default {
   components: {
     Right,
-    Left
+    Left,
+    ContentTop
   },
   props: {
     posts: Object
-  }
+  },
+  data() {
+    return {
+      TOP: CONST.S_BS_TOP.v
+    }
+  },
 }
 </script>
 

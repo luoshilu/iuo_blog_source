@@ -18,9 +18,6 @@
             <FormItem label="cdn域名">
                 <Input v-model="site.cdn"></Input>
             </FormItem>
-            <FormItem label="github">
-                <Input v-model="site.github"></Input>
-            </FormItem>
 
             <FormItem label="关键词">
                 <Input v-model="site.keywords"></Input>
@@ -90,6 +87,25 @@
             </FormItem>
             </Form>
           </TabPane>
+
+          <TabPane label="联系方式">
+            <Form :model="contact" :label-width="80">
+            <FormItem label="github">
+                <Input v-model="contact.github"></Input>
+            </FormItem>
+            <FormItem label="qq">
+                <Input v-model="contact.qq"></Input>
+            </FormItem>
+
+            <FormItem label="wechat">
+                <Input v-model="contact.wechat"></Input>
+            </FormItem>
+
+            <FormItem>
+                <Button type="primary" @click="post('contact',contact)">保存</Button>
+            </FormItem>
+            </Form>
+          </TabPane>
       </Tabs>
 </template>
 <script>
@@ -105,7 +121,8 @@ export default {
       email:{
         secure:1
       },
-      qiniu :{}
+      qiniu :{},
+      contact: {}
     };
   },
   methods: {
@@ -120,12 +137,17 @@ export default {
         if(res.data.qiniu){
           this.qiniu = res.data.qiniu;
         }
+        if(res.data.contact){
+          this.contact = res.data.contact;
+        }
       });
     },
     post(type,data) {
       console.log(type)
       config.update(type, data).then(res => {
-
+        if (res.errno === 0) {
+          this.$message.info("更新成功")
+        }
       });
     }
   },

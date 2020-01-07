@@ -91,4 +91,10 @@ module.exports = {
       })
     },
   },
+
+  hooks: {
+    'vue-renderer:ssr:context': ctx => {
+      ctx.nuxt.layout = ctx.nuxt.data.layout
+    },
+  },
 }

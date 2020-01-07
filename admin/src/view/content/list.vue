@@ -18,6 +18,11 @@
 <script>
 import { content } from "@/api";
 import { Button, Table, Page, Form, FormItem, Input } from 'iview';
+const types = {
+  [CONST.S_BS_DRAFT.v]: '草稿',
+  [CONST.S_BS_PUBLISH.v]: '已发布',
+  [CONST.S_BS_TOP.v]: '置顶'
+}
 export default {
   components: {
     Button,
@@ -36,8 +41,18 @@ export default {
           key: "title"
         },
         {
+          title: "状态",
+          key: "status",
+          width: 100,
+          align: "center",
+          render: (h, params) => {
+            return h('span', `${types[params.row.status]}`)
+          }
+        },
+        {
           title: "分类",
           key: "category",
+          width: 150,
           render: (h, params) => {
             return h('span',params.row.category.name);
           }

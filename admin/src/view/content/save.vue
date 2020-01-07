@@ -2,8 +2,9 @@
   <Form :model="formItem" ref="formItem" :rules="ruleInline" :label-width="80">
     <FormItem label="状态" prop="status">
       <RadioGroup v-model="formItem.status">
-        <Radio :label="0">草稿</Radio>
-        <Radio :label="99">发布</Radio>
+        <Radio :label="CONST.S_BS_DRAFT.v">草稿</Radio>
+        <Radio :label="CONST.S_BS_PUBLISH.v">发布</Radio>
+        <Radio :label="CONST.S_BS_TOP.v">顶置</Radio>
       </RadioGroup>
     </FormItem>
     <FormItem label="文章标题" prop="title">
@@ -93,7 +94,7 @@ export default {
         id: "",
         title: "",
         category_id: "",
-        status: 99,
+        status: CONST.S_BS_PUBLISH.v,
         tag: [],
         date: new Date(),
         time: new Date(),
@@ -109,7 +110,8 @@ export default {
         time: [{ required: true, message: "发布时间必须选择" }]
       },
       category: [],
-      tag: []
+      tag: [],
+      CONST: CONST
     };
   },
   methods: {

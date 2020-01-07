@@ -1,5 +1,11 @@
 <template>
     <Form :model="formItem"  ref="formItem" :rules="ruleInline" :label-width="80">
+        <FormItem label="状态" prop="status">
+          <RadioGroup v-model="formItem.status">
+            <Radio :label="CONST.S_BS_DRAFT.v">隐藏</Radio>
+            <Radio :label="CONST.S_BS_PUBLISH.v">显示</Radio>
+          </RadioGroup>
+        </FormItem>
         <FormItem label="页面标题"  prop="title">
             <Input v-model="formItem.title" placeholder="文章标题"></Input>
         </FormItem>
@@ -31,7 +37,7 @@
                     id:"",
                     title: '',
                     category_id: 0,
-                    status: 99,
+                    status: CONST.S_BS_PUBLISH.v,
                     tag: [],
                     date: new Date(),
                     time: new Date(),
@@ -43,9 +49,10 @@
                     title: [
                         { required: true, message: '文章标题必须填写' }
                     ]
-                },                
+                },
                 category:[],
-                tag:[]
+                tag:[],
+                CONST: CONST
             }
         },
         methods:{
@@ -96,7 +103,7 @@
             getTag(){
                 tag.getList().then(res=>{
                     this.tag=res.data;
-                });                
+                });
             },
             get(id){
                 content.getInfo(id).then(res=>{
@@ -112,12 +119,12 @@
             },
             imgAdd(pos, $file){
                var formdata = new FormData();
-               formdata.append('image', $file); 
+               formdata.append('image', $file);
                image.upload(formdata).then(res=>{
                     if(res.errno==0&&res.data.url){
                         this.$refs['md'].$img2Url(pos, res.data.url);
                     }
-               });               
+               });
             }
         },
         mounted(){

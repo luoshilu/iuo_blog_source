@@ -671,13 +671,22 @@
     }
   }
   .item-title {
+    position: relative;
     display: block;
     margin: 30px 0 0;
     text-align: center;
     a {
+      position: relative;
       font-size: 21px;
       line-height: 17px;
       color: #313131;
+      .icon {
+        position: absolute;
+        right: 0;
+        transform: translate(120%);
+        width: 40px;
+        height: 20px;
+      }
     }
   }
   .item-content {

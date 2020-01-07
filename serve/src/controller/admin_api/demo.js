@@ -106,7 +106,7 @@ module.exports = class extends BaseRest {
     if (this.id) {
       map.slug = this.id;
       if (think.isEmpty(this.userInfo)) {
-        map.status = 99;
+        map.status = think.CONST.S_BS_PUBLISH.v;
       }
       data = await this.modelInstance.where(map).find();
       return this.success(data);

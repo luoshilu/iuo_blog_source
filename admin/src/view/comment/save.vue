@@ -11,8 +11,8 @@
     </FormItem>
     <FormItem label="状态" prop="status">
       <RadioGroup v-model="formItem.status">
-        <Radio :label="1">隐藏</Radio>
-        <Radio :label="99">显示</Radio>
+        <Radio :label="CONST.S_BS_DRAFT.v">隐藏</Radio>
+        <Radio :label="CONST.S_BS_PUBLISH.v">显示</Radio>
       </RadioGroup>
     </FormItem>
     <FormItem label="内容" prop="text">
@@ -40,7 +40,7 @@ export default {
       formItem: {
         id: "",
         text: '',
-        status: 99
+        status: CONST.S_BS_PUBLISH.v
       },
       ruleInline: {
         author: [
@@ -57,7 +57,8 @@ export default {
         text: [
           { required: true, message: '留言内容不能为空' }
         ],
-      }
+      },
+      CONST: CONST
     }
   },
   methods: {

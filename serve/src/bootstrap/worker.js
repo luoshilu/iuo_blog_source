@@ -1,6 +1,7 @@
+const constant = require('iuo_blog_constant')
 think.beforeStartServer(async() => {
   const hooks = [];
-
+  think.CONST = constant;
   for (const Service of Object.values(think.app.services)) {
     const isHookService = think.isFunction(Service.registerHook);
     if (!isHookService) {

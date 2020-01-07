@@ -29,6 +29,11 @@ module.exports = class extends Client {
       const map = {};
       map.slug = this.id;
       data = await this.modelInstance.where(map).find();
+
+      // 文章不存在
+      if (think.isEmpty(data)) {
+        return this.success(10001, '文章不存在');
+      }
       // 增加阅读量
       if (!this.userInfo) {
         this.modelInstance.where(map).increment('view');
@@ -62,7 +67,9 @@ module.exports = class extends Client {
     // 获取列表
     const type = this.get('type') || 'default'; // 列表类型
     const map = {
-      status: 99,
+      status: {
+        '>=': think.CONST.S_BS_PUBLISH.v
+      },  
       type: 'post'
     };
     // 归档
@@ -98,7 +105,7 @@ module.exports = class extends Client {
     const page = this.get('page') || 1;
     // 每页显示数量
     const pageSize = this.get('pageSize') || 5;
-    data = await this.modelInstance.where(map).page(page, pageSize).order('create_time desc').fieldReverse('content,markdown').countSelect();
+    data = await this.modelInstance.where(map).page(page, pageSize).order(['status desc', 'create_time desc']).fieldReverse('content,markdown').countSelect();
     return this.success(data);
   }
 };
