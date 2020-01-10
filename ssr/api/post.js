@@ -19,9 +19,9 @@ export default {
     })
   },
 
-  getInfo (slug) {
+  getInfo (map = {}) {
     return new Promise((resolve, reject) => {
-      Vue.axios.get(`/content/${slug}`).then(response => {
+      Vue.axios.get(`/content`, { params: map }).then(response => {
         resolve(response.data)
       })
     })

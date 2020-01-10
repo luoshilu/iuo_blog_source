@@ -5006,10 +5006,10 @@ istanbul-reports@^1.5.1:
   dependencies:
     handlebars "^4.0.3"
 
-iuo_blog_constant@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npm.taobao.org/iuo_blog_constant/download/iuo_blog_constant-1.0.1.tgz?cache=0&sync_timestamp=1578414137101&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fiuo_blog_constant%2Fdownload%2Fiuo_blog_constant-1.0.1.tgz#f459f72c28e7457f73fd4bbd310b96340011916c"
-  integrity sha1-9Fn3LCjnRX9z/Uu9MQuWNAARkWw=
+iuo_blog_constant@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/iuo_blog_constant/download/iuo_blog_constant-1.0.3.tgz?cache=0&sync_timestamp=1578585436280&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fiuo_blog_constant%2Fdownload%2Fiuo_blog_constant-1.0.3.tgz#cf6e85cc09d87c4588e2fa725a1b3c0772e99376"
+  integrity sha1-z26FzAnYfEWI4vpyWhs8B3Lpk3Y=
 
 iview@^2.8.0:
   version "2.14.3"

@@ -45,8 +45,8 @@ export default {
         }
 
         // set visitor
-        let visitorInfo = res.data.visitorInfo
-        this.$store.commit('INIT_VISITOER', visitorInfo)
+        // let visitorInfo = res.data.visitorInfo
+        // this.$store.commit('INIT_VISITOR', visitorInfo)
       }
     })
   },

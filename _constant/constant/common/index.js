@@ -13,6 +13,16 @@ module.exports = {
     en: 'draft',
     zh: '草稿'
   },
+  S_BS_SELFSEE : {
+    v: 1,
+    en: 'selfsee',
+    zh: '自己可见'
+  },
+  S_BS_ENCRYPT : {
+    v: 2,
+    en: 'encrypt',
+    zh: '加密链接'
+  },
   S_BS_PUBLISH : {
     v: 99,
     en: 'publish',

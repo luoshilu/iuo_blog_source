@@ -65,7 +65,7 @@ export default {
       let Headroom = HeadroomModule()
       let header = new Headroom(document.getElementById("header"), {
         tolerance: 0,
-        offset: 80,
+        offset: 60,
         classes: { initial: "animated", pinned: "slideDown", unpinned: "slideUp" }
       });
       header.init()

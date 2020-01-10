@@ -25,20 +25,26 @@ module.exports = class extends Client {
   async getAction() {
     let data;
     // 获取详情
-    if (this.id) {
+    let contentId = this.id || this.get('slug')
+    if (contentId) {
       const map = {};
-      map.slug = this.id;
+      map.slug = contentId;
       data = await this.modelInstance.where(map).find();
 
       // 文章不存在
-      if (think.isEmpty(data)) {
-        return this.success(10001, '文章不存在');
-      }
-      // 增加阅读量
-      if (!this.userInfo) {
-        this.modelInstance.where(map).increment('view');
+      if (think.isEmpty(data) || data.status < think.CONST.S_BS_ENCRYPT.v) {
+        return this.success(404, '文章不存在');
       }
 
+      // 加密的内容
+      if (data.status === think.CONST.S_BS_ENCRYPT.v) {
+        let entrypt = this.get('entrypt')
+        if (!think.isEmpty(data.encrypt) && entrypt !== data.encrypt) {
+          return this.success(401, '没有查看权限')
+        }
+      }
+
+      this.modelInstance.where(map).increment('view');
       /**
        * 文章评论的数据格式化
        * @return [{comment}] [将评论垂直聚合，comments --> child --> comments --> child]

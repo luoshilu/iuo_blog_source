@@ -54,8 +54,8 @@ module.exports = class extends think.Model {
       if (tagData.length !== 0) think.model('relationship').addMany(tagData);
       // 更新文章数量
       this.updateCount(data.category_id, tag);
+      return data;
     }
-    return id;
   }
 
   // 更新文章
@@ -71,13 +71,7 @@ module.exports = class extends think.Model {
     data = this.parseContent(data);
     data.id = id;
     const res = await this.where({ id: data.id }).update(data);
-
-    if (res) {
-      // 更新文章数量
-      this.updateCount(data.category_id, data.tag);
-    }
-
-    return res;
+    if (res) return data
   }
 
   // 处理内容，生成文章简介

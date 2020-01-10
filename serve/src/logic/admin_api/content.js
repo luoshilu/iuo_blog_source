@@ -19,7 +19,7 @@ module.exports = class extends think.Logic {
       }
     };
     const msgs = {
-      name: '文章标题不能为空',
+      title: '文章标题不能为空',
       category_id: '分类必须选择',
       create_time: '发布时间不能为空',
       status: '文章状态不能为空'

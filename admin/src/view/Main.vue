@@ -85,7 +85,7 @@ export default {
         {
           name: "demo管理",
           path: "/demo/list",
-          icon: "shuffle",
+          icon: "lightbulb",
         },
         {
           name: "页面管理",

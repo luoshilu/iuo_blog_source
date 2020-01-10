@@ -8,11 +8,11 @@ module.exports = class extends BaseRest {
     const user = this.model('user');
     const userInfo = await user.where({ username: username }).find();
     if (think.isEmpty(userInfo)) {
-      return this.fail('老弟,别搞我!!!');// 用户不存在
+      return this.fail('账户或密码错误！');// 用户不存在
     }
     const result = user.verifyPassword(userInfo, password);
     if (think.isEmpty(result)) {
-      return this.fail('老弟,别搞我!!!');
+      return this.fail('账户或密码错误！');
     }
     delete userInfo.password;
     delete userInfo.encrypt;

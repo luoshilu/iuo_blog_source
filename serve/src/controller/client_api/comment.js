@@ -58,7 +58,7 @@ module.exports = class extends BaseRest {
    * @return {[type]} [description]
    */
   async postAction() {
-    if (this.visitorInfo.comment_time - Date.now() < 12 * 1000) {
+    if (this.visitorInfo && this.visitorInfo.comment_time - Date.now() < 12 * 1000) {
       return this.success({status: 0, msg: '你评论太频繁咯 ~'});
     }
 
@@ -95,7 +95,7 @@ module.exports = class extends BaseRest {
     let category = content.type;
 
     if (insertId) {
-      this.visitorInfo.comment_time = Date.now();
+      this.visitorInfo && (this.visitorInfo.comment_time = Date.now())
       // 是文章类型，则获取其category
       if (content.type === 'post') {
         category = content.category.slug;

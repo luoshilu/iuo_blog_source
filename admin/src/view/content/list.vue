@@ -18,10 +18,13 @@
 <script>
 import { content } from "@/api";
 import { Button, Table, Page, Form, FormItem, Input } from 'iview';
-const types = {
-  [CONST.S_BS_DRAFT.v]: '草稿',
-  [CONST.S_BS_PUBLISH.v]: '已发布',
-  [CONST.S_BS_TOP.v]: '置顶'
+
+const STATUS_NAME = {
+  [CONST.S_BS_DRAFT.v]: CONST.S_BS_DRAFT.zh,
+  [CONST.S_BS_SELFSEE.v]: CONST.S_BS_SELFSEE.zh,
+  [CONST.S_BS_ENCRYPT.v]: CONST.S_BS_ENCRYPT.zh,
+  [CONST.S_BS_PUBLISH.v]: CONST.S_BS_PUBLISH.zh,
+  [CONST.S_BS_TOP.v]: CONST.S_BS_TOP.zh
 }
 export default {
   components: {
@@ -46,7 +49,7 @@ export default {
           width: 100,
           align: "center",
           render: (h, params) => {
-            return h('span', `${types[params.row.status]}`)
+            return h('span', `${STATUS_NAME[params.row.status]}`)
           }
         },
         {
@@ -124,7 +127,7 @@ export default {
           }
         }
       ],
-      data: {},
+      data: [],
       map:{
         page:1,
         key:"",
@@ -144,7 +147,7 @@ export default {
     },
     delete(id, index) {
       content.delete(id).then(res => {
-        this.data.splice(index, 1);
+        this.data.data.splice(index, 1);
       });
     },
     changePage(index){

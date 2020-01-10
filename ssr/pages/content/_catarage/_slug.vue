@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div class="post-detail-module">
+  <div class="post-container">
+    <div v-if="!noAuth" class="post-detail-module">
       <article class="main-content page-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">{{ post.title }}</h1>
@@ -35,10 +35,17 @@
           </p>
         </div>
       </article>
+
       <div v-if="isPost" id="directory-content" class="directory-content">
           <div id="directory"></div>
       </div>
       <Comment :contentType="'post'" :contentSlug="post.slug" v-bind:commentList="post.comment"></Comment>
+    </div>
+    <div class="pos-auth-content" v-else>
+      <div class="auth-con">
+        <input class="input-password" v-model="password" type="text" placeholder="请输入访问密码">
+        <a class="visit-btn" @click="authContent">点击访问</a>
+      </div>
     </div>
   </div>
 </template>
@@ -62,19 +69,27 @@ export default {
     let initData = {
       post: {
         title: '',
-        slug: '',
+        slug: params.slug,
+        tag: [],
         category: {},
-        comment: [],
+        comment: []
       },
       tag: [],
-      loading: false
+      noAuth: false,
+      password: ''
     }
 
-    let res = await post.getInfo(params.slug)
+    let res = await post.getInfo({
+      slug: params.slug
+    })
     if (res.data.id) {
       initData.post = res.data
+    } else if (res.data === 401){
+      initData.noAuth = true
     } else {
-      error({ statusCode: 404 })
+      error({
+        statusCode: res.data
+      })
     }
     return initData
   },
@@ -97,6 +112,21 @@ export default {
   computed: {
     isPost() {
       return (this.post.type === 'post')
+    }
+  },
+  methods: {
+    authContent() {
+      post.getInfo({
+        slug: this.post.slug,
+        entrypt: this.password
+      }).then(res => {
+        if (res.data.id) {
+          this.post = res.data
+          this.noAuth = false
+        } else if (res.data == 401) {
+          alert('密码错误')
+        }
+      })
     }
   },
   mounted () {

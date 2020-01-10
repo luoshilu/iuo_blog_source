@@ -316,6 +316,46 @@
   }
 }
 
+.post-container {
+  position: relative;
+  min-height: 600px;
+  .pos-auth-content {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    .input-password {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 16px;
+      width: 280px;
+      line-height: 50px;
+      padding: 0 12px;
+      border: 2px solid #7b8993;
+      border-radius: 3px;
+      outline: none;
+    }
+    .visit-btn {
+      display: inline-block;
+      font-weight: 500;
+      font-size: 16px;
+      padding: 0 24px;
+      margin-left: 12px;
+      border: 2px solid #7b8993;
+      border-radius: 3px;
+      line-height: 50px;
+      cursor: pointer;
+      &:hover {
+        border-color: #6fa3ef;
+        color: #6fa3ef;
+      }
+    }
+    input::-webkit-input-placeholder {
+      font-size: 16px;
+    }
+  }
+}
 .main-content {
   position: relative;
   max-width: 940px;
@@ -1030,7 +1070,6 @@
     opacity: 0;
   }
   &.headroom--not-top {
-    transition: opacity 500ms ease-in-out;
     transition: opacity 500ms ease-in-out;
     opacity: 1;
   }

@@ -10,6 +10,7 @@ module.exports = class extends BaseRest {
     const data = {
       user_id: userInfo.id,
       title: this.post('title'),
+      encrypt: this.post('encrypt'),
       category_id: this.post('category_id'),
       slug: this.post('slug'),
       status: this.post('status'),
@@ -22,11 +23,10 @@ module.exports = class extends BaseRest {
       create_time: createTime,
       modify_time: createTime
     };
-    const id = this.modelInstance.insert(data);
-    if (id) {
-      data.id = id;
-      await this.hook('contentCreate', data);
-      return this.success({ id: id }, '添加成功');
+    let res = await this.modelInstance.insert(data);
+    if (res) {
+      await this.hook('contentCreate', res);
+      return this.success({ result: res }, '添加成功');
     } else {
       return this.fail(1000, '添加失败');
     }
@@ -43,6 +43,7 @@ module.exports = class extends BaseRest {
     }
     const data = {
       title: this.post('title'),
+      encrypt: this.post('encrypt'),
       category_id: this.post('category_id'),
       slug: this.post('slug'),
       status: this.post('status'),
@@ -54,11 +55,10 @@ module.exports = class extends BaseRest {
       create_time: this.post('create_time') ? (new Date(this.post('create_time'))).getTime() / 1000 : (new Date()).getTime() / 1000,
       modify_time: (new Date()).getTime() / 1000
     };
-    const res = this.modelInstance.save(id, data);
+    let res = await this.modelInstance.save(id, data);
     if (res) {
-      data.id = id;
-      await this.hook('contentUpdate', data);
-      return this.success({ id: id }, '修改成功');
+      await this.hook('contentUpdate', res);
+      return this.success({ result: res }, '修改成功');
     } else {
       return this.fail(1000, '添加失败');
     }

@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "html-minifier": "^3.5.15",
-    "iuo_blog_constant": "^1.0.1",
+    "iuo_blog_constant": "^1.0.3",
     "qiniu": "^7.1.3",
     "think-cache": "^1.0.0",
     "think-cache-file": "^1.0.8",

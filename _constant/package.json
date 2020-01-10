@@ -1,6 +1,6 @@
 {
   "name": "iuo_blog_constant",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "iuo_blog's constants",
   "main": "index.js",
   "scripts": {

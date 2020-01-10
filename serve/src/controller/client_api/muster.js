@@ -7,7 +7,9 @@ module.exports = class extends Client {
    */
   async getAction() {
     const map = {
-      status: think.CONST.S_BS_PUBLISH.v,
+      status: {
+        '>=': think.CONST.S_BS_PUBLISH.v
+      },
       type: 'post'
     };
 

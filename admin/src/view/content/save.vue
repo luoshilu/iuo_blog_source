@@ -3,9 +3,14 @@
     <FormItem label="状态" prop="status">
       <RadioGroup v-model="formItem.status">
         <Radio :label="CONST.S_BS_DRAFT.v">草稿</Radio>
+        <Radio :label="CONST.S_BS_SELFSEE.v">自己可见</Radio>
+        <Radio :label="CONST.S_BS_ENCRYPT.v">加密</Radio>
         <Radio :label="CONST.S_BS_PUBLISH.v">发布</Radio>
         <Radio :label="CONST.S_BS_TOP.v">顶置</Radio>
       </RadioGroup>
+    </FormItem>
+    <FormItem v-if="formItem.status === CONST.S_BS_ENCRYPT.v" label="打开密码" prop="encrypt">
+      <Input v-model="formItem.encrypt" placeholder="请输入打开密码" style="width: 300px"></Input>
     </FormItem>
     <FormItem label="文章标题" prop="title">
       <Input v-model="formItem.title" placeholder="文章标题" style="width: 300px"></Input>
@@ -46,7 +51,8 @@
       </div>
     </FormItem>
     <FormItem>
-      <Button type="primary" @click="post">提交</Button>
+      <Button type="default" @click="post('save')">保存</Button>
+      <Button type="primary" @click="post('submit')">提交</Button>
     </FormItem>
   </Form>
 </template>
@@ -115,7 +121,7 @@ export default {
     };
   },
   methods: {
-    post() {
+    post(type) {
       this.formItem.content = this.$refs["md"].d_render;
       //处理发布时间
       let seperator1 = "-";
@@ -148,15 +154,23 @@ export default {
           if (this.formItem.id) {
             //更新数据
             content.update(this.formItem.id, this.formItem).then(res => {
-              if (res.errno == 0 && res.data.id) {
-                this.$router.push("/content/list");
+              if (res.errno == 0 && res.data.result) {
+                if (type === 'submit') {
+                  this.$router.push("/content/list");
+                  return;
+                }
+                this.setContentlink(res.data.result)
               }
             });
           } else {
             //新增数据
             content.create(this.formItem).then(res => {
-              if (res.errno == 0 && res.data.id) {
-                this.$router.push("/content/list");
+              if (res.errno == 0 && res.data.result) {
+                if (type === 'submit') {
+                  this.$router.push("/content/list");
+                  return;
+                }
+                this.setContentlink(res.data.result)
               }
             });
           }
@@ -168,6 +182,34 @@ export default {
     getCategory() {
       category.getList().then(res => {
         this.category = res.data;
+      });
+    },
+    getCategorySelectName() {
+      let name
+      this.category.some((item)=>{
+        if (this.formItem.category_id === item.id) {
+          name = item.name
+          return true
+        }
+      })
+      return name
+    },
+    copyStr(str){
+      let input = document.createElement('input')
+      input.id = 'copy_ele'
+      input.setAttribute('value', str);
+      document.getElementsByTagName('body')[0].appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      input = undefined
+    },
+    setContentlink(data){
+      let categoryName = this.getCategorySelectName(data.category_id)
+      if (!categoryName) return
+      this.copyStr(`${location.origin}/content/${categoryName}/${data.slug}`)
+      this.$Notice.open({
+          title: '提醒',
+          desc: `文章链接已复制到粘贴板`
       });
     },
     getTag() {
