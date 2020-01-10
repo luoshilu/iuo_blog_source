@@ -3,7 +3,7 @@
     <FormItem label="状态" prop="status">
       <RadioGroup v-model="formItem.status">
         <Radio :label="CONST.S_BS_DRAFT.v">草稿</Radio>
-        <Radio :label="CONST.S_BS_SELFSEE.v">自己可见</Radio>
+        <!-- <Radio :label="CONST.S_BS_SELFSEE.v">自己可见</Radio> -->
         <Radio :label="CONST.S_BS_ENCRYPT.v">加密</Radio>
         <Radio :label="CONST.S_BS_PUBLISH.v">发布</Radio>
         <Radio :label="CONST.S_BS_TOP.v">顶置</Radio>

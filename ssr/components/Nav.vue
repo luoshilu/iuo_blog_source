@@ -61,15 +61,17 @@ export default {
     site: state => state.site
   }),
   mounted() {
-    if(process.client) {
-      let Headroom = HeadroomModule()
-      let header = new Headroom(document.getElementById("header"), {
-        tolerance: 0,
-        offset: 60,
-        classes: { initial: "animated", pinned: "slideDown", unpinned: "slideUp" }
-      });
-      header.init()
-    }
+    setTimeout(()=>{
+      if(process.client) {
+        let Headroom = HeadroomModule()
+        let header = new Headroom(document.getElementById("header"), {
+          tolerance: 0,
+          offset: 60,
+          classes: { initial: "animated", pinned: "slideDown", unpinned: "slideUp" }
+        });
+        header.init()
+      }
+    },100)
   },
   methods: {
     onSubmit() {
