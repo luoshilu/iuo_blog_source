@@ -134,9 +134,9 @@ export default {
       content.getList({ 'type': 'hot' }).then(res => {
         let xAxisData = [];
         let seriesData = [];
-        for (let i in res.data) {
-          xAxisData.push(res.data[i].slug);
-          seriesData.push(res.data[i].view);
+        for (let i in res.data.data) {
+          xAxisData.push(res.data.data[i].title);
+          seriesData.push(res.data.data[i].view);
         }
         myChart.setOption({
           title: { text: '热门文章' },
@@ -154,8 +154,8 @@ export default {
         let xAxisData = [];
         let seriesData = [];
         let max = 10;
-        for (let i in res.data) {
-          let date = new Date(res.data[i].create_time * 1000);
+        for (let i in res.data.data) {
+          let date = new Date(res.data.data[i].create_time * 1000);
           let key = date.getFullYear() + '-' + ((date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : '0' + (date.getMonth() + 1));
           monthsData[key] = monthsData[key] ? monthsData[key] + 1 : 1;
           if (monthsData[key] > max) {

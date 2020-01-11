@@ -184,11 +184,11 @@ export default {
         this.category = res.data;
       });
     },
-    getCategorySelectName() {
+    getCategorySelectName(category_id) {
       let name
       this.category.some((item)=>{
-        if (this.formItem.category_id === item.id) {
-          name = item.name
+        if (category_id === item.id) {
+          name = item.slug
           return true
         }
       })
@@ -204,9 +204,9 @@ export default {
       input = undefined
     },
     setContentlink(data){
-      let categoryName = this.getCategorySelectName(data.category_id)
-      if (!categoryName) return
-      this.copyStr(`${location.origin}/content/${categoryName}/${data.slug}`)
+      let category_slug = this.getCategorySelectName(data.category_id)
+      if (!category_slug) return
+      this.copyStr(`${location.origin}/content/${category_slug}/${data.slug}`)
       this.$Notice.open({
           title: '提醒',
           desc: `文章链接已复制到粘贴板`
