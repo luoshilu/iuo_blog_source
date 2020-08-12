@@ -12,12 +12,12 @@
     <FormItem label="demo标识" prop="slug">
       <Input v-model="formItem.slug" placeholder="demo唯一标识，并作为参数构造url" style="width: 300px"></Input>
     </FormItem>
-    <FormItem label="跳转展现" prop="direct_url">
+    <!-- <FormItem label="跳转展现" prop="direct_url">
       <RadioGroup v-model="formItem.direct_url">
         <Radio :label="0">否</Radio>
         <Radio :label="1">是</Radio>
       </RadioGroup>
-    </FormItem>
+    </FormItem> -->
     <FormItem label="缩略图" prop="thumb">
       <Input v-model="formItem.thumb" placeholder="使用编辑器上传得到地址" style="width: 300px"></Input>
     </FormItem>
@@ -114,7 +114,8 @@ export default {
   },
   methods: {
     demo() {
-      this.formItem.description = this.$refs["md"].d_render;
+      // this.formItem.description = this.$refs["md"].d_render;
+      this.formItem.description = '';
       //处理发布时间
       let seperator1 = "-";
       let seperator2 = ":";
