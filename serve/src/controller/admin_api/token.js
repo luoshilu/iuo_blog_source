@@ -20,4 +20,9 @@ module.exports = class extends BaseRest {
     const token = await this.session('userInfo', userInfo);
     return this.success({ token: token });
   }
+
+  async getAction() {
+    this.ctx.status = 405;
+    return this.fail('不允许的请求');
+  }
 };

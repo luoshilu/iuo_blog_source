@@ -69,8 +69,6 @@ module.exports = class extends BaseRest {
    * @return {[type]} [description]
    */
   async getAction() {
-    if (think.isEmpty(this.userInfo)) return this.success({});
-
     let data;
     const map = {};
     // 获取详情
